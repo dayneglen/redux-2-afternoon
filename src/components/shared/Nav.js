@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import "./../Budget/Budget.css"
 
 class Nav extends Component {
+
   render() {
-    let { firstName, lastName } = this.props;
+    let { firstName, lastName } = this.props.user;
     if (!firstName) firstName = 'MISSING'
     if (!lastName) lastName = 'MISSING'
 
@@ -20,4 +22,10 @@ class Nav extends Component {
   }
 }
 
-export default Nav
+const mapStateToProps = reduxState => {
+  return {
+    user: reduxState.user
+  }
+}
+
+export default connect(mapStateToProps)(Nav); 
